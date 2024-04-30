@@ -14,7 +14,6 @@ exports.addtask = async (req, res) => {
     const decodedToken = jwt.verify(token, 'my_secret_code');
     const nameEx = decodedToken.name;
 
-    // Find the organizer using the extracted username
     const user = await User.findOne({ name : nameEx });
     user.todolist.push(task);
     await user.save();
